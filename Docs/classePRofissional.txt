@@ -1,0 +1,7 @@
+public class Profissional
+    {
+        public double ValorGanhoMes { get; set; }
+        public int HorasTrabalhadasPorDia { get; set; }
+        public int DiasTrabalhadosPorMes { get; set; }
+        public int DiasFeriasPorAno { get; set; }
+    }
