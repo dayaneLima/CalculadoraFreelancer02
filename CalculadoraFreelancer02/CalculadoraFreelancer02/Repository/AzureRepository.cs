@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalculadoraFreelancer02.Service
+namespace CalculadoraFreelancer02.Repository
 {
-    public class ProfissionalAzureClient
+    public class AzureRepository
     {
         private IMobileServiceClient Client;
         private IMobileServiceTable<Profissional> Table;
 
-        public ProfissionalAzureClient()
+        public AzureRepository()
         {
-            string MyAppServiceURL = "Sua Url Aqui";
+            string MyAppServiceURL = "sua url do azure";
             Client = new MobileServiceClient(MyAppServiceURL);
             Table = Client.GetTable<Profissional>();
         }
@@ -37,9 +37,26 @@ namespace CalculadoraFreelancer02.Service
             await Table.InsertAsync(profissional);
         }
 
+        public async Task Update(Profissional profissional)
+        {
+            await Table.UpdateAsync(profissional);
+        }
+
         public async void Delete(Profissional profissional)
         {
             await Table.DeleteAsync(profissional);
+        }
+
+        public async Task<Profissional> Find(string id)
+        {
+            var itens = await Table.Where(i => i.Id == id).ToListAsync();
+            return (itens.Count > 0) ? itens[0] : null;
+        }
+
+        public async Task<Profissional> GetFirst()
+        {
+            var itens = await Table.ToListAsync();
+            return (itens.Count > 0) ? itens[0] : null;
         }
     }
 }

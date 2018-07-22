@@ -11,6 +11,7 @@ namespace CalculadoraFreelancer02.Models
         public int HorasTrabalhadasPorDia { get; set; }
         public int DiasTrabalhadosPorMes { get; set; }
         public int DiasFeriasPorAno { get; set; }
+        public double ValorPorHora { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
