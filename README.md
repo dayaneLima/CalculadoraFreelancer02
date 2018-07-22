@@ -11,7 +11,7 @@ Clique com o botão direito sobre a Solution e vá em Manage NuGet Packages for 
 Vá em Browse, pesquise por Microsoft.Azure.Mobile.Client, ao encontrar a biblioteca a selecione.
 Na direita, selecione todos os projetos e clique em instalar.
 
-<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/Azure01_azureXamarinForms01.png" alt="Instalar o Microsoft.Azure.Mobile.Client" width="260">
+<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/Azure01_azureXamarinForms01.png" alt="Instalar o Microsoft.Azure.Mobile.Client" width="100%">
 
 Abaixo segue a animação da instalação completa:
 
