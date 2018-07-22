@@ -1,7 +1,9 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace CalculadoraFreelancer02.Models
+namespace CalculadoraFreelancer01.Models
 {
     [DataTable("Profissional")]
     public class Profissional

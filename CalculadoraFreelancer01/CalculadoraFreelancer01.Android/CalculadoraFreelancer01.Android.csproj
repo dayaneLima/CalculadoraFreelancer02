@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7B3C7F95-E0D6-4780-8C1D-3D1B52C6BC1F}</ProjectGuid>
+    <ProjectGuid>{535021F1-5A46-40AB-80FC-A9160A04EA2C}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CalculadoraFreelancer02.Droid</RootNamespace>
-    <AssemblyName>CalculadoraFreelancer02.Android</AssemblyName>
+    <RootNamespace>CalculadoraFreelancer01.Droid</RootNamespace>
+    <AssemblyName>CalculadoraFreelancer01.Android</AssemblyName>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -94,9 +94,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CalculadoraFreelancer02\CalculadoraFreelancer02.csproj">
-      <Project>{9E701E30-8BF9-467D-80CD-EC3E64E95FBE}</Project>
-      <Name>CalculadoraFreelancer02</Name>
+    <ProjectReference Include="..\CalculadoraFreelancer01\CalculadoraFreelancer01.csproj">
+      <Project>{45A10D7E-773A-4D28-BBE6-30322FB3528A}</Project>
+      <Name>CalculadoraFreelancer01</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

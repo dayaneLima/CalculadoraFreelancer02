@@ -1,4 +1,4 @@
-﻿using CalculadoraFreelancer02.Repository;
+﻿using CalculadoraFreelancer01.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CalculadoraFreelancer02
+namespace CalculadoraFreelancer01
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CalculoValorHoraPage : ContentPage
-    {
-        public CalculoValorHoraPage()
-        {
-            InitializeComponent();
+	public partial class CalculoValorHoraPage : ContentPage
+	{
+		public CalculoValorHoraPage ()
+		{
+			InitializeComponent ();
 
             CalcularValorHoraButton.Clicked += CalcularValorHoraButton_Clicked;
-        }
+		}
 
         private void CalcularValorHoraButton_Clicked(object sender, EventArgs e)
         {
@@ -30,14 +30,13 @@ namespace CalculadoraFreelancer02
             {
                 totalDiasTrabalhadosPorAno -= int.Parse(DiasFeriasPorAno.Text);
             }
-            
+
             double valorHora = valorGanhoAnual / (totalDiasTrabalhadosPorAno * int.Parse(HorasTrabalhadasPorDia.Text));
 
             ValorDaHora.Text = $"{valorHora.ToString("C")} / hora";
 
             Gravar(valorHora);
         }
-
         private async void Gravar(double valorHora)
         {
             var profissionalAzureClient = new AzureRepository();
@@ -49,7 +48,7 @@ namespace CalculadoraFreelancer02
                 DiasTrabalhadosPorMes = int.Parse(DiasTrabalhadosPorMes.Text),
                 DiasFeriasPorAno = int.Parse(DiasFeriasPorAno.Text),
                 ValorPorHora = valorHora
-            }); 
+            });
 
             await App.Current.MainPage.DisplayAlert("Sucesso", "Valor por hora gravado!", "Ok");
         }

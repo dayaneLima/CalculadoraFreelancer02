@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
-namespace CalculadoraFreelancer02
+namespace CalculadoraFreelancer01
 {
 	public partial class App : Application
 	{
@@ -11,8 +11,8 @@ namespace CalculadoraFreelancer02
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new CalculoValorHoraPage());
-        }
+			MainPage = new NavigationPage(new CalculoValorHoraPage());
+		}
 
 		protected override void OnStart ()
 		{

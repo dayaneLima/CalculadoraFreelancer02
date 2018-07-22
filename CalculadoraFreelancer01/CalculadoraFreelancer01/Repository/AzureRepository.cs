@@ -1,11 +1,11 @@
-﻿using CalculadoraFreelancer02.Models;
+﻿using CalculadoraFreelancer01.Models;
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalculadoraFreelancer02.Repository
+namespace CalculadoraFreelancer01.Repository
 {
     public class AzureRepository
     {
@@ -14,7 +14,7 @@ namespace CalculadoraFreelancer02.Repository
 
         public AzureRepository()
         {
-            string MyAppServiceURL = "sua url do azure";
+            string MyAppServiceURL = "Sua Url do Azure Aqui";
             Client = new MobileServiceClient(MyAppServiceURL);
             Table = Client.GetTable<Profissional>();
         }

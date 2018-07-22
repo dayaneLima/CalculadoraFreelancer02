@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("CalculadoraFreelancer02.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("CalculadoraFreelancer01.Droid.Resource", IsApplication=true)]
 
-namespace CalculadoraFreelancer02.Droid
+namespace CalculadoraFreelancer01.Droid
 {
 	
 	
@@ -26,17 +26,17 @@ namespace CalculadoraFreelancer02.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Auth._MobileServices.Resource.Animation.slide_in_right = global::CalculadoraFreelancer02.Droid.Resource.Animation.slide_in_right;
-			global::Xamarin.Auth._MobileServices.Resource.Animation.slide_out_left = global::CalculadoraFreelancer02.Droid.Resource.Animation.slide_out_left;
-			global::Xamarin.Auth._MobileServices.Resource.Drawable.ic_arrow_back = global::CalculadoraFreelancer02.Droid.Resource.Drawable.ic_arrow_back;
-			global::Xamarin.Auth._MobileServices.Resource.Id.webview = global::CalculadoraFreelancer02.Droid.Resource.Id.webview;
-			global::Xamarin.Auth._MobileServices.Resource.Layout.activity_webview = global::CalculadoraFreelancer02.Droid.Resource.Layout.activity_webview;
-			global::Xamarin.Auth._MobileServices.Resource.String.ApplicationName = global::CalculadoraFreelancer02.Droid.Resource.String.ApplicationName;
-			global::Xamarin.Auth._MobileServices.Resource.String.Hello = global::CalculadoraFreelancer02.Droid.Resource.String.Hello;
-			global::Xamarin.Auth._MobileServices.Resource.String.title_activity_webview = global::CalculadoraFreelancer02.Droid.Resource.String.title_activity_webview;
-			global::PCLCrypto.Resource.String.ApplicationName = global::CalculadoraFreelancer02.Droid.Resource.String.ApplicationName;
-			global::PCLCrypto.Resource.String.Hello = global::CalculadoraFreelancer02.Droid.Resource.String.Hello;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::CalculadoraFreelancer02.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Auth._MobileServices.Resource.Animation.slide_in_right = global::CalculadoraFreelancer01.Droid.Resource.Animation.slide_in_right;
+			global::Xamarin.Auth._MobileServices.Resource.Animation.slide_out_left = global::CalculadoraFreelancer01.Droid.Resource.Animation.slide_out_left;
+			global::Xamarin.Auth._MobileServices.Resource.Drawable.ic_arrow_back = global::CalculadoraFreelancer01.Droid.Resource.Drawable.ic_arrow_back;
+			global::Xamarin.Auth._MobileServices.Resource.Id.webview = global::CalculadoraFreelancer01.Droid.Resource.Id.webview;
+			global::Xamarin.Auth._MobileServices.Resource.Layout.activity_webview = global::CalculadoraFreelancer01.Droid.Resource.Layout.activity_webview;
+			global::Xamarin.Auth._MobileServices.Resource.String.ApplicationName = global::CalculadoraFreelancer01.Droid.Resource.String.ApplicationName;
+			global::Xamarin.Auth._MobileServices.Resource.String.Hello = global::CalculadoraFreelancer01.Droid.Resource.String.Hello;
+			global::Xamarin.Auth._MobileServices.Resource.String.title_activity_webview = global::CalculadoraFreelancer01.Droid.Resource.String.title_activity_webview;
+			global::PCLCrypto.Resource.String.ApplicationName = global::CalculadoraFreelancer01.Droid.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::CalculadoraFreelancer01.Droid.Resource.String.Hello;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::CalculadoraFreelancer01.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

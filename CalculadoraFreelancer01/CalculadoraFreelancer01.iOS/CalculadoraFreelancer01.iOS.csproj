@@ -5,13 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9103D34-F323-42BA-AC56-B5128AFA8C45}</ProjectGuid>
+    <ProjectGuid>{D0CD2E74-8427-4FA8-9995-1E36CD247917}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CalculadoraFreelancer02.iOS</RootNamespace>
+    <RootNamespace>CalculadoraFreelancer01.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>CalculadoraFreelancer02.iOS</AssemblyName>
+    <AssemblyName>CalculadoraFreelancer01.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -154,9 +154,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\CalculadoraFreelancer02\CalculadoraFreelancer02.csproj">
-      <Project>{9E701E30-8BF9-467D-80CD-EC3E64E95FBE}</Project>
-      <Name>CalculadoraFreelancer02</Name>
+    <ProjectReference Include="..\CalculadoraFreelancer01\CalculadoraFreelancer01.csproj">
+      <Project>{45A10D7E-773A-4D28-BBE6-30322FB3528A}</Project>
+      <Name>CalculadoraFreelancer01</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
