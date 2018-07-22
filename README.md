@@ -6,12 +6,12 @@ Se trata da continuação do app <a href="https://github.com/dayaneLima/Calculad
 
 Clique com o botão direito sobre a Solution e vá em Manage NuGet Packages for Solution...
 
-<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/managerNugetPackagesForSolution.PNG" alt="Abrir gerenciamento nuget" width="260">
+<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/managerNugetPackagesForSolution.png" alt="Abrir gerenciamento nuget" width="260">
 
 Vá em Browse, pesquise por Microsoft.Azure.Mobile.Client, ao encontrar a biblioteca a selecione.
 Na direita, selecione todos os projetos e clique em instalar.
 
-<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/Azure01_azureXamarinForms01.PNG" alt="Abrir gerenciamento nuget" width="260">
+<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/Azure01_azureXamarinForms01.png" alt="Instalar o Microsoft.Azure.Mobile.Client" width="100%">
 
 Abaixo segue a animação da instalação completa:
 
