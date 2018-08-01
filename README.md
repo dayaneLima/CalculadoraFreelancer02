@@ -29,7 +29,7 @@ Agora vamos adicionar a model Profissional ao nosso projeto. Clique com o botão
 
 ![Criação model Profissional](https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Gifs/AzureGif03_CriacaoClasseProfissional.gif)
 
-Vamos adicionar nela os atributos Id, ValorGanhoMes, HorasTrabalhadasPorDia, DiasTrabalhadosPorMes, DiasFeriasPorAno, ValorPorHora, CreatedAt, UpdatedAt e Version.
+Vamos adicionar nela os atributos Id, ValorGanhoMes, HorasTrabalhadasPorDia, DiasTrabalhadosPorMes, DiasFeriasPorAno, DiasDoencaPorAno, ValorPorHora, CreatedAt, UpdatedAt e Version.
 
 Em cima do nome da classe Profissional, adicione o nome da tabela referente a criada no Easy Table do Azure, dessa forma:  [DataTable("Profissional")].
 
@@ -44,6 +44,7 @@ A classe deverá ficar assim:
         public int HorasTrabalhadasPorDia { get; set; }
         public int DiasTrabalhadosPorMes { get; set; }
         public int DiasFeriasPorAno { get; set; }
+        public int DiasDoencaPorAno { get; set; }
         public double ValorPorHora { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
@@ -184,6 +185,7 @@ Agora vamos chamar a função de Insert do nosso AzureRepository passando um obj
                 HorasTrabalhadasPorDia = int.Parse(HorasTrabalhadasPorDia.Text),
                 DiasTrabalhadosPorMes = int.Parse(DiasTrabalhadosPorMes.Text),
                 DiasFeriasPorAno = int.Parse(DiasFeriasPorAno.Text),
+                DiasDoencaPorAno = int.Parse(DiasDoencaPorAno.Text),
                 ValorPorHora = valorHora
             }); 
          }
@@ -202,6 +204,7 @@ Vamos exibir um alerta para o nosso usuário informando que os dados foram grava
                 HorasTrabalhadasPorDia = int.Parse(HorasTrabalhadasPorDia.Text),
                 DiasTrabalhadosPorMes = int.Parse(DiasTrabalhadosPorMes.Text),
                 DiasFeriasPorAno = int.Parse(DiasFeriasPorAno.Text),
+                DiasDoencaPorAno = int.Parse(DiasDoencaPorAno.Text),
                 ValorPorHora = valorHora
             }); 
 
@@ -221,6 +224,11 @@ Agora vamos alterar a função CalcularValorHoraButton_Clicked para chamar a fun
             if (!string.IsNullOrEmpty(DiasFeriasPorAno.Text))
             {
                 totalDiasTrabalhadosPorAno -= int.Parse(DiasFeriasPorAno.Text);
+            }
+
+            if (!string.IsNullOrEmpty(DiasDoencaPorAno.Text))
+            {
+                totalDiasTrabalhadosPorAno -= int.Parse(DiasDoencaPorAno.Text);
             }
             
             double valorHora = valorGanhoAnual / (totalDiasTrabalhadosPorAno * int.Parse(HorasTrabalhadasPorDia.Text));
