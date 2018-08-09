@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Projeto"
+             Padding="10"
+             x:Class="CalcFreelancer.ProjetoPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Nome do Projeto" />
+                <Entry Placeholder="Nome do projeto"
+                   x:Name="Nome" />
+
+                <Label Text="Valor por hora" />
+                <Entry Placeholder="Valor por hora"
+                   Keyboard="Numeric"
+                    x:Name="ValorPorHora" />
+
+                <Label Text="Horas por dia" />
+                <Entry Placeholder="Horas por dia"
+                   Keyboard="Numeric"
+                    x:Name="HorasPorDia" />
+
+                <Label Text="Dias de duração do projeto" />
+                <Entry Placeholder="Dias de duração do projeto"
+                   Keyboard="Numeric"
+                    x:Name="DiasDuracaoProjeto" />
+
+                <Label FontSize="Large"
+                    x:Name="ValorTotal" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                        BackgroundColor="#cdcdcd"
+                        Text="Limpar"
+                        x:Name="LimparButton"/>
+                    <Button Grid.Column="1"
+                    Text="Gravar"
+                    TextColor="White"
+                    BackgroundColor="#6699ff"
+                    x:Name="GravarButton"/>
+                </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
