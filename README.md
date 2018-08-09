@@ -552,3 +552,111 @@ Agora vamos criar uma função chamada Gravar que irá chamar a classe do Azure 
   }
 ````
 
+Vamos agora dar funcionoalidade ao botão de limpar. No construtor da classe adicione também o evento de click ao botão de limpar:
+
+```c#
+  public partial class ProjetoPage : ContentPage
+  {
+      public ProjetoPage ()
+      {
+          InitializeComponent ();
+          GravarButton.Clicked += GravarButton_Clicked;
+          LimparButton.Clicked += LimparButton_Clicked;
+      }
+      
+      private void LimparButton_Clicked(object sender, EventArgs e)
+      {
+      }
+      
+      .....
+      
+  }
+  ````
+  
+  Agora vamos implementar a função LimparButton_Clicked:
+  
+  ```c#
+      private void LimparButton_Clicked(object sender, EventArgs e)
+        {
+            Nome.Text = string.Empty;
+            ValorPorHora.Text = string.Empty;
+            HorasPorDia.Text = string.Empty;
+            DiasDuracaoProjeto.Text = string.Empty;
+            ValorTotal.Text = string.Empty;
+        }
+  ````
+
+A classe completa ficou assim:
+
+```c#
+  public partial class ProjetoPage : ContentPage
+  {
+      public ProjetoPage ()
+      {
+          InitializeComponent ();
+          GravarButton.Clicked += GravarButton_Clicked;
+          LimparButton.Clicked += LimparButton_Clicked;
+      }
+
+        private void LimparButton_Clicked(object sender, EventArgs e)
+        {
+            Nome.Text = string.Empty;
+            ValorPorHora.Text = string.Empty;
+            HorasPorDia.Text = string.Empty;
+            DiasDuracaoProjeto.Text = string.Empty;
+            ValorTotal.Text = string.Empty;
+        }
+
+
+        private void GravarButton_Clicked(object sender, EventArgs e)
+        {
+            var valorTotal = double.Parse(ValorPorHora.Text) * int.Parse(HorasPorDia.Text) * int.Parse(DiasDuracaoProjeto.Text);
+            ValorTotal.Text = $"{valorTotal.ToString("C")} / hora";
+            Gravar(valorTotal);
+        }
+
+        private async void Gravar(double valorTotal)
+        {
+            var projetoAzureClient = new AzureProjetoRepository();
+
+            projetoAzureClient.Insert(new Models.Projeto()
+            {
+                Nome = Nome.Text,
+                ValorPorHora = double.Parse(ValorPorHora.Text),
+                HorasPorDia = int.Parse(HorasPorDia.Text),
+                DiasDuracaoProjeto = int.Parse(DiasDuracaoProjeto.Text),
+                ValorTotal = valorTotal
+            });
+
+            await App.Current.MainPage.DisplayAlert("Sucesso", "Projeto gravado!", "Ok");
+        }
+    }
+````
+
+### Adicionar o ProjetoPage na HomePage
+
+Vamos agora criar uma tab para o nosso ProjetoPage, para isso edite o arquivo chamado HomePage.xaml. 
+
+Abaixo do <local:CalculoValorHoraPage/> adicione o <local:ProjetoPage/>. Ficará assim:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CalcFreelancer"
+             Title="Calculadora Freelancer"
+             x:Class="CalcFreelancer.HomePage">
+    
+    <local:CalculoValorHoraPage/>
+    <local:ProjetoPage/>
+
+</TabbedPage>
+````
+
+### Resultado
+
+Execute o projeto e veja se o resultado ficou similar ao abaixo:
+
+<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Gifs/ProjetoPage.gif" alt="HomePage com duas Tabs" width="260">
+
+
