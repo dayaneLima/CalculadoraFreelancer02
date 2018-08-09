@@ -342,3 +342,213 @@ Agora vamos alterar a função CalcularValorHoraButton_Clicked para chamar a fun
 
 Prontinho, agora nossos dados estão sendo gravados no Azure.
 
+## Agora vamos criar uma Tela para calcular o Valor do Projeto
+Agora que sabemos como calcular o valor da hora do profissional, podemos calcular os valores dos projetos.
+
+Para o cálculo, precisamos saber o valor da hora do profissional, as horas por dia que irá trabalhar no projeto e quantos dias durará o projeto.
+
+O cálculo é simples:
+ValorTotal = ValorPorHora * HorasPorDia * DiasDuracaoProjeto
+
+
+### Criação Model Projeto
+
+Dentro da pasta Models crie uma classe chamada Projeto, ela ficará dessa forma:
+
+```c#
+ [DataTable("Projeto")]
+    public class Projeto
+    {
+        public string Id { get; set; }
+        public string Nome { get; set; }
+        public double ValorPorHora { get; set; }
+        public int HorasPorDia { get; set; }
+        public int DiasDuracaoProjeto { get; set; }
+        public double ValorTotal { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+        [Version]
+        public string Version { get; set; }
+    }
+````
+
+### Vamos agora criar a tela do projeto - ProjetoPage
+
+Vá em Add -> new item, escolha Xamarin Forms, após escolha o Content Page. Cuidado para não escolher a Content Page (C#). Dê o nome de ProjetoPage.
+
+Edite o arquivo ProjetoPage.xaml.
+
+Dê um Title e um Padding para o ContentPage igual fizemos na CalculoValorHoraPage:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Projeto"
+             Padding="10"
+             x:Class="CalcFreelancer.ProjetoPage">
+    ...
+</ContentPage>
+````
+
+Agora dentro do StackLayout vamos criar os campos para o usuário preencher, vamos precisar dos seguintes campos: Nome, ValorPorHora, HorasPorDia, DiasDuracaoProjeto e ValorTotal. Também terá um botão para Gravar e Limpar o Projeto.
+
+A tela ficará assim:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Projeto"
+             Padding="10"
+             x:Class="CalcFreelancer.ProjetoPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Nome do Projeto" />
+                <Entry Placeholder="Nome do projeto"
+                   x:Name="Nome" />
+
+                <Label Text="Valor por hora" />
+                <Entry Placeholder="Valor por hora"
+                   Keyboard="Numeric"
+                    x:Name="ValorPorHora" />
+
+                <Label Text="Horas por dia" />
+                <Entry Placeholder="Horas por dia"
+                   Keyboard="Numeric"
+                    x:Name="HorasPorDia" />
+
+                <Label Text="Dias de duração do projeto" />
+                <Entry Placeholder="Dias de duração do projeto"
+                   Keyboard="Numeric"
+                    x:Name="DiasDuracaoProjeto" />
+
+                <Label FontSize="Large"
+                    x:Name="ValorTotal" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                        BackgroundColor="#cdcdcd"
+                        Text="Limpar"
+                        x:Name="LimparButton"/>
+                    <Button Grid.Column="1"
+                    Text="Gravar"
+                    TextColor="White"
+                    BackgroundColor="#6699ff"
+                    x:Name="GravarButton"/>
+                </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+````
+
+### AzureProjetoRepository
+
+Para fins de teste, dentro da pasta repository, crie uma classe chamada AzureProjetoRepository.
+
+Ela terá os mesmos atributos da AzureRepository, mas teremos somente a função de inserir, dessa forma:
+
+```c#
+    public class AzureProjetoRepository
+    {
+        private IMobileServiceClient Client;
+        private IMobileServiceTable<Projeto> Table;
+
+        public AzureProjetoRepository()
+        {
+            string MyAppServiceURL = "sua url do azure";
+            Client = new MobileServiceClient(MyAppServiceURL);
+            Table = Client.GetTable<Projeto>();
+        }
+
+        public async void Insert(Projeto projeto)
+        {
+            await Table.InsertAsync(projeto);
+        }
+    }
+````
+
+### Salvar o Projeto no Azure - ProjetoPage.xaml.cs
+
+Agora no Code Behind da ProjetoPage (Arquivo ProjetoPage.xaml.cs), vamos salvar os dados.
+
+No construtor adicione o evento de click para seu botão de gravar e crie a função que ele irá chamar.
+
+```c#
+  public partial class ProjetoPage : ContentPage
+  {
+      public ProjetoPage ()
+      {
+            InitializeComponent ();
+            GravarButton.Clicked += GravarButton_Clicked;
+      }
+
+        private void GravarButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+  }
+````
+
+Na função criada, faça o cálculo do valor total do projeto
+
+```c#
+  public partial class ProjetoPage : ContentPage
+  {
+      public ProjetoPage ()
+      {
+            InitializeComponent ();
+            GravarButton.Clicked += GravarButton_Clicked;
+      }
+
+        private void GravarButton_Clicked(object sender, EventArgs e)
+        {
+            var valorTotal = double.Parse(ValorPorHora.Text) * int.Parse(HorasPorDia.Text) * int.Parse(DiasDuracaoProjeto.Text);
+            ValorTotal.Text = $"{valorTotal.ToString("C")} / hora";
+            
+        }
+  }
+````
+
+Agora vamos criar uma função chamada Gravar que irá chamar a classe do Azure que criamos no passo anterior:
+
+```c#
+  public partial class ProjetoPage : ContentPage
+  {
+      public ProjetoPage ()
+      {
+            InitializeComponent ();
+            GravarButton.Clicked += GravarButton_Clicked;
+      }
+      
+        private void GravarButton_Clicked(object sender, EventArgs e)
+        {
+            var valorTotal = double.Parse(ValorPorHora.Text) * int.Parse(HorasPorDia.Text) * int.Parse(DiasDuracaoProjeto.Text);
+            ValorTotal.Text = $"{valorTotal.ToString("C")} / hora";
+            Gravar(valorTotal);
+        }
+
+        private async void Gravar(double valorTotal)
+        {
+            var projetoAzureClient = new AzureProjetoRepository();
+
+            projetoAzureClient.Insert(new Models.Projeto()
+            {
+                Nome = Nome.Text,
+                ValorPorHora = double.Parse(ValorPorHora.Text),
+                HorasPorDia = int.Parse(HorasPorDia.Text),
+                DiasDuracaoProjeto = int.Parse(DiasDuracaoProjeto.Text),
+                ValorTotal = valorTotal
+            });
+
+            await App.Current.MainPage.DisplayAlert("Sucesso", "Projeto gravado!", "Ok");
+        }
+  }
+````
+
