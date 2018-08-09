@@ -136,7 +136,21 @@ A classe deverá ficar assim:
 
 Vamos criar uma outra pasta, agora chamada Repository.
 
-Dentro dela, adicione uma classe chamada AzureRepository. 
+Dentro dela, adicione uma classe chamada AzureRepository:
+
+```c#
+  class AzureRepository
+  {
+  }
+````
+
+Não se esqueça de colocá-la como pública:
+
+```c#
+  public class AzureRepository
+  {
+  }
+````
 
 Nela vamos criar duas propriedades:
 
@@ -148,15 +162,24 @@ Nela vamos criar duas propriedades:
         private IMobileServiceTable<Profissional> Table;
 ````
 
+O Visual Studio marcará como erro pois não importamos as classes necessárias, ele tem um atalho para isso. Clique sobre o item que está com o erro, pressione Ctrl + . e ele te dará as sugestões, a primeira delas é o using na classe necessária, então clique sobre ela.
+
+Caso queira adicionar manualmente, vá no início do arquivo AzureRepository e adicione esses dois usings:
+
+```c#
+using CalcFreelancer.Models;
+using Microsoft.WindowsAzure.MobileServices;
+````
+
 Vamos criar um construtor para essa classe e iniciar essas variáveis: 
 
 ```c#
- public AzureRepository()
-        {
-            string MyAppServiceURL = "sua url do Azure";
-            Client = new MobileServiceClient(MyAppServiceURL);
-            Table = Client.GetTable<Profissional>();
-        }
+  public AzureRepository()
+  {
+      string MyAppServiceURL = "sua url do Azure";
+      Client = new MobileServiceClient(MyAppServiceURL);
+      Table = Client.GetTable<Profissional>();
+  }
 ````
 
 Agora vamos criar as funções de manipulação dos dados da nossa tabela Profissional no Easy table. 
@@ -222,7 +245,7 @@ A classe pronta ficará assim:
 
 ## Alteração da Tela
 
-Vamos alterar o texto do nosso botão de Calcular para Gravar, no arquivo CalculoValorHoraPage.xaml:
+Vamos alterar o texto do nosso botão de Calcular para Gravar (Alterar somente o valor do atributo Text), no arquivo CalculoValorHoraPage.xaml:
 
 ```xml
       <Button Text="Gravar"
@@ -236,37 +259,36 @@ Agora vamos alterar o Code Behing para gravar no Azure os dados. Edite o arquivo
 Crie a função chamada Gravar. Ela receberá por parâmetro o valor double chamado valorHora, que é o valor calculado da hora do profissional.
 
 ```c#
- private async void Gravar(double valorHora)
-        {
-        }
+  private async void Gravar(double valorHora)
+  {
+  }
 ````
 
 Vamos instanciar nessa classe um objeto do tipo AzureRepository.
 
 ```c#
-    private async void Gravar(double valorHora)
-        {
-            var profissionalAzureClient = new AzureRepository();
-        }
+  private async void Gravar(double valorHora)
+  {
+      var profissionalAzureClient = new AzureRepository();
+  }
 ````
 
 Agora vamos chamar a função de Insert do nosso AzureRepository passando um objeto do tipo Profissional, com os dados obtidos da tela.
 
 ```c#
-    private async void Gravar(double valorHora)
-        {
-            var profissionalAzureClient = new AzureRepository();
+  private async void Gravar(double valorHora)
+  {
+        var profissionalAzureClient = new AzureRepository();
 
-            profissionalAzureClient.Insert(new Models.Profissional()
-            {
-                ValorGanhoMes = double.Parse(ValorGanhoMes.Text),
-                HorasTrabalhadasPorDia = int.Parse(HorasTrabalhadasPorDia.Text),
-                DiasTrabalhadosPorMes = int.Parse(DiasTrabalhadosPorMes.Text),
-                DiasFeriasPorAno = int.Parse(DiasFeriasPorAno.Text),
-                DiasDoencaPorAno = int.Parse(DiasDoencaPorAno.Text),
-                ValorPorHora = valorHora
-            }); 
-         }
+        profissionalAzureClient.Insert(new Models.Profissional()
+        {
+            ValorGanhoMes = double.Parse(ValorGanhoMes.Text),
+            HorasTrabalhadasPorDia = int.Parse(HorasTrabalhadasPorDia.Text),
+            DiasTrabalhadosPorMes = int.Parse(DiasTrabalhadosPorMes.Text),
+            DiasFeriasPorAno = int.Parse(DiasFeriasPorAno.Text),
+            ValorPorHora = valorHora
+        }); 
+  }
 ````
 
 Vamos exibir um alerta para o nosso usuário informando que os dados foram gravados:
@@ -294,7 +316,7 @@ Agora vamos alterar a função CalcularValorHoraButton_Clicked para chamar a fun
 
 ```c#
   private void CalcularValorHoraButton_Clicked(object sender, EventArgs e)
-        {
+  {
 
             double valorGanhoAnual = double.Parse(ValorGanhoMes.Text) * 12;
             int totalDiasTrabalhadosPorAno = int.Parse(DiasTrabalhadosPorMes.Text) * 12;
@@ -314,7 +336,7 @@ Agora vamos alterar a função CalcularValorHoraButton_Clicked para chamar a fun
             ValorDaHora.Text = $"{valorHora.ToString("C")} / hora";
 
             Gravar(valorHora);
-        }
+  }
 ````
 
 
