@@ -2,6 +2,85 @@
 
 Se trata da continuação do app <a href="https://github.com/dayaneLima/CalculadoraFreelancer01">CalculadoraFreelancer01</a>
 
+## Vamos criar uma TabbedPage 
+
+Temos a tela de cálculo do valor da hora do profissional e teremos outra para calcular o orçamento de projetos, então vamos trabalhar com tabbedPage, no qual terá uma "aba" com o cálculo do valor da hora e outra com o cálculo do valor do projeto.
+
+Vamos criar uma Page chamada HomePage, clique com o botão direito sobre o projeto principal (chamado CalculadoraFreelancer01), vá em Add -> new item, escolha Xamarin Forms e a direita escolha a escrita Tabbed Page.
+
+![Criação TabbedPage](https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Gifs/TabbedPage.gif)
+
+No arquivo HomePage.xaml vamos adicionar a tela CalculoValorHoraPage como sendo a primeira tab. Para isso precisamos referenciar o nosso projeto para acessar nossas telas, para isso adicione o seguinte trecho de código dentro da tag \<TabbedPage\> (o valor do namespace será o nome do seu projeto):
+
+```xml
+xmlns:local="clr-namespace:CalcFreelancer"
+````
+
+Vamos aproveitar e dar um Title para a nossa TabbedPage, adicionando também o seguinte trecho de código:
+
+```xml
+Title="Calculadora Freelancer"
+````
+
+Ficará assim então:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CalcFreelancer"
+             Title="Calculadora Freelancer"
+             x:Class="CalcFreelancer.HomePage">
+  <!--Pages can be added as references or inline-->
+  <ContentPage Title="Tab 1" />
+  <ContentPage Title="Tab 2" />
+  <ContentPage Title="Tab 3" />
+</TabbedPage>
+````
+
+Então vamos remover esses ContentPages que não será utilizado:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CalcFreelancer"
+             Title="Calculadora Freelancer"
+             x:Class="CalcFreelancer.HomePage">
+
+</TabbedPage>
+````
+
+Agora vamos referenciar a nossa tela:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CalcFreelancer"
+             Title="Calculadora Freelancer"
+             x:Class="CalcFreelancer.HomePage">
+    
+    <local:CalculoValorHoraPage/>
+    
+</TabbedPage>
+````
+
+Para testar altere o arquivo App.xaml.cs alterando para a nossa tela inicial ser a HomePage, altere então o construtor da classe e troque o  MainPage = new NavigationPage(new CalculoValorHoraPage()) por  MainPage = new NavigationPage(new HomePage()) : 
+
+
+```c#
+   public App ()
+   {
+      InitializeComponent();
+      MainPage = new NavigationPage(new HomePage());
+   }
+````
+
+Agora execute o projeto, ele deverá gerar uma tela similar a essa:
+
+<img src="https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Imgs/HomePage.png" alt="Tela home" width="260">
+
 ## Vamos adicionar a biblioteca do Azure no nosso app
 
 Clique com o botão direito sobre a Solution e vá em Manage NuGet Packages for Solution...
@@ -29,7 +108,7 @@ Agora vamos adicionar a model Profissional ao nosso projeto. Clique com o botão
 
 ![Criação model Profissional](https://github.com/dayaneLima/CalculadoraFreelancer02/blob/master/Docs/Gifs/AzureGif03_CriacaoClasseProfissional.gif)
 
-Vamos adicionar nela os atributos Id, ValorGanhoMes, HorasTrabalhadasPorDia, DiasTrabalhadosPorMes, DiasFeriasPorAno, DiasDoencaPorAno, ValorPorHora, CreatedAt, UpdatedAt e Version.
+Vamos adicionar nela os atributos Id, ValorGanhoMes, HorasTrabalhadasPorDia, DiasTrabalhadosPorMes, DiasFeriasPorAno, ValorPorHora, CreatedAt, UpdatedAt e Version.
 
 Em cima do nome da classe Profissional, adicione o nome da tabela referente a criada no Easy Table do Azure, dessa forma:  [DataTable("Profissional")].
 
@@ -44,7 +123,6 @@ A classe deverá ficar assim:
         public int HorasTrabalhadasPorDia { get; set; }
         public int DiasTrabalhadosPorMes { get; set; }
         public int DiasFeriasPorAno { get; set; }
-        public int DiasDoencaPorAno { get; set; }
         public double ValorPorHora { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
