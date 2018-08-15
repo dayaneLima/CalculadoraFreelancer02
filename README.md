@@ -304,7 +304,6 @@ Vamos exibir um alerta para o nosso usuário informando que os dados foram grava
                 HorasTrabalhadasPorDia = int.Parse(HorasTrabalhadasPorDia.Text),
                 DiasTrabalhadosPorMes = int.Parse(DiasTrabalhadosPorMes.Text),
                 DiasFeriasPorAno = int.Parse(DiasFeriasPorAno.Text),
-                DiasDoencaPorAno = int.Parse(DiasDoencaPorAno.Text),
                 ValorPorHora = valorHora
             }); 
 
@@ -324,11 +323,6 @@ Agora vamos alterar a função CalcularValorHoraButton_Clicked para chamar a fun
             if (!string.IsNullOrEmpty(DiasFeriasPorAno.Text))
             {
                 totalDiasTrabalhadosPorAno -= int.Parse(DiasFeriasPorAno.Text);
-            }
-
-            if (!string.IsNullOrEmpty(DiasDoencaPorAno.Text))
-            {
-                totalDiasTrabalhadosPorAno -= int.Parse(DiasDoencaPorAno.Text);
             }
             
             double valorHora = valorGanhoAnual / (totalDiasTrabalhadosPorAno * int.Parse(HorasTrabalhadasPorDia.Text));
